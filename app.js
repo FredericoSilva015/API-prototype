@@ -1,24 +1,46 @@
-// import express from 'express';
-// import db from './db/db';
+import * as express from 'express';
+import db from './db/db';
+import * as bodyParser from 'body-parser';
 
-// // set up express app
-// const app = express();
+/** 
+ * Set up express app
+ */ 
+const app = express();
 
-// // set up the port
-// const PORT = 5000;
+/** 
+ * Set up the port
+ */ 
+const PORT = 5000;
 
-// // get all todos
-// app.get('/api/v1/todos', (req, res) => {
-//   res.status(200).send({
-//     success: 'true',
-//     message: 'todos retrieved successfully',
-//     todos: db
-//   })
-// });
+/** 
+ * Parse incoming data
+ */ 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
-// // listen to
-// app.listen(PORT, () => {
-//   console.log(`server running on port ${PORT}`);
-// });
+/** 
+ * GET all todos
+ * 
+ * @param req
+ * @param res
+ */ 
+app.get('/api/v1/todos', (req, res) => {
+  res.status(200).send({
+    success: 'true',
+    message: 'todos retrieved successfully',
+    todos: db
+  })
+});
 
-console.log('Hello twice');
+/** 
+ * POST
+ */ 
+
+/** 
+ * Listen to PORT
+ * 
+ * @param PORT
+ */ 
+app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`);
+});
