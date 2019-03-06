@@ -14,14 +14,15 @@ const PORT = 5000;
 
 /** 
  * Parse incoming data
+ * Generic routing aproach
  */ 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 /** 
- * GET all todos
+ * GET handles database request
  * 
- * @param req
+ * @param req wont be used in this instance, but is required
  * @param res
  */ 
 app.get('/api/v1/todos', (req, res) => {
@@ -33,9 +34,9 @@ app.get('/api/v1/todos', (req, res) => {
 });
 
 /** 
- * POST
+ * POST add's 1 entry to db
  * 
- * @param req
+ * @param req must have title and description on body
  * @param res
  */
 app.post('/api/v1/todos', (req, res) => {
@@ -65,7 +66,6 @@ app.post('/api/v1/todos', (req, res) => {
     message: 'todo added successfully',
     todo
   });   
-
 }); 
 
 /** 
